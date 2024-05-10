@@ -11,8 +11,19 @@ class SpawnerMonedas{
     //Cuando un metodo u operacion requiere informacion o requiere que se envie como parametro otro objeto, es decir sin ese objeto no puede realizar su funcionalidad, estamos ante una relacion de dependencia
   } 
   public void generarMonedas(Habitacion habitacion){
-    
+    int anchoCeramico=habitacion.getAncho()/8;
+    int diametroMoneda= (int)(anchoCeramico*0.7);
+    monedas[0]= new Moneda(new PVector(habitacion.getPosicion().x+(anchoCeramico/2), habitacion.getPosicion().y+(anchoCeramico/2)), diametroMoneda);
+    monedas[1]= new Moneda(new PVector(habitacion.getPosicion().x+habitacion.getAncho()-(anchoCeramico/2), habitacion.getPosicion().y+(anchoCeramico/2)), diametroMoneda);
+    monedas[2]= new Moneda(new PVector(habitacion.getPosicion().x+(anchoCeramico/2), habitacion.getPosicion().y+habitacion.getAncho()-(anchoCeramico/2)), diametroMoneda);
+    monedas[3]= new Moneda(new PVector(habitacion.getPosicion().x+habitacion.getAncho()-(anchoCeramico/2), habitacion.getPosicion().y+habitacion.getAncho()-(anchoCeramico/2)), diametroMoneda);
   }
- 
-
+  
+  public void visualizarMonedas(){
+    for(Moneda m: monedas ){
+      if(m != null){
+        m.display();
+      }
+    }
+  }
 }

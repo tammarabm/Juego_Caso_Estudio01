@@ -9,7 +9,6 @@ class Habitacion{
     this.alto=alto;
     this.tipoHab=tipoHab;
     this.posicion= posicion;
-  
   }
   
   public void dibujarPiso(){
@@ -34,5 +33,13 @@ class Habitacion{
       posCeramico.y+=anchoCeramico;
     }
   
+  }
+  
+  public PVector getPosicion(){
+    return this.posicion;
+  }
+  
+  public int getAncho(){
+    return this.ancho;
   }
 }

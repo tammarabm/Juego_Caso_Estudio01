@@ -1,24 +1,28 @@
 private Personaje personaje;
 private JoyPad joyPad;
-private Moneda moneda;
+//private Moneda moneda;
 private Habitacion habitacion; 
+private SpawnerMonedas spawnerMonedas;
 
 
 public void setup(){
   size (600,600);
-  habitacion=new Habitacion(400, 400, 0, new PVector(50,50));
+  habitacion=new Habitacion(400, 400, 0, new PVector(100,100));
+  spawnerMonedas= new SpawnerMonedas();
+  spawnerMonedas.generarMonedas(habitacion);
   personaje= new Personaje(); //Creo un objeto de este tipo
   personaje.setPosicion(new PVector(100,200));                  //Asigno la posicion
   personaje.setVelocidad(new PVector(5,5));
   joyPad = new JoyPad();
-  moneda=new Moneda(new PVector(100,100));  //Posicion de la moneda
+  //moneda=new Moneda(new PVector(100,100));  //Posicion de la moneda
 }
 
 public void draw(){
   background(#5A5858);
   habitacion.dibujarPiso();
+  spawnerMonedas.visualizarMonedas();
   personaje.display();
-  moneda.display();
+  //moneda.display();
   //¿Que sucede cuando tenemos un valor en el joypad?
   if(joyPad.isUpPressed()){
     personaje.mover(0);
