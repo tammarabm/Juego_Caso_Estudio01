@@ -23,7 +23,7 @@ class Habitacion{
       if(f%2!=0){
         posCeramico.x=this.posicion.x;       
       }else{
-        posCeramico.x=anchoCeramico;
+        posCeramico.x=this.posicion.x+anchoCeramico;
       }
       
       for (int c=1; c<=4;c++){
