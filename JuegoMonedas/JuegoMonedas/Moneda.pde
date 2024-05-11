@@ -5,12 +5,12 @@ class Moneda extends GameObject{
   }
   
   public Moneda(PVector posicion){  //Constructor parametrizado porque quiero establecer al momento de crear una moneda quiero establecer su posicion
-    this.posicion=posicion;
+    super(posicion);
   }
   //Creo otro constructor en el cual le vamos a pasar ambos datos: posicion y diametro
   
   public Moneda (PVector posicion, int diametro){
-    this.posicion=posicion;
+    super(posicion);
     this.diametro=diametro;
   }
   

@@ -13,4 +13,9 @@ abstract class GameObject{
   instancias de las subclases de GameObject, entonces por ese motivo nosotros la definimos como abstracta.
   
   */
+  public GameObject (){
+  }
+  public GameObject (PVector posicion){
+    this.posicion=posicion;
+  }
 }
