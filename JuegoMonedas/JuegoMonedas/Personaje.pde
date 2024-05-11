@@ -1,5 +1,5 @@
-class Personaje{
-  private PVector posicion; //Atributo
+class Personaje extends GameObject{
+
   private PVector velocidad; //razon de cambio y posicion
   
   //Operaciones
