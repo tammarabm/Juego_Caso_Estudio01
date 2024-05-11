@@ -15,7 +15,7 @@ public void setup(){
   personaje.setPosicion(new PVector(100,200));                  //Asigno la posicion
   personaje.setVelocidad(new PVector(5,5));
   joyPad = new JoyPad();
-  enemigo= new Enemigo (new PVector(width/2, height/2));   //Asigno posición al enemigo
+  enemigo= new Enemigo (new PVector(width/2, height/2), new PVector(2,2));   //Asigno posición al enemigo y velocidad
   //GameObject go = new GameObject();   Sale error porque NO se puede instanciar una clase abstracta 
   //moneda=new Moneda(new PVector(100,100));  //Posicion de la moneda
 }
@@ -43,6 +43,7 @@ public void draw(){
     personaje.mover(3);
   }
   enemigo.display();
+  enemigo.mover(0, habitacion);
 }
 
 public void keyPressed(){

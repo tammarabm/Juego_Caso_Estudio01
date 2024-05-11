@@ -17,7 +17,7 @@ class Enemigo extends GameObject{  //De esta manera ahora enemigo tiene un atrib
   public void display(){
     fill(#2256ED);
     strokeWeight(5);
-    circle(this.posicion.x, this.posicion.y, 40);
+    circle(this.posicion.x, this.posicion.y, GestorConstantes.ALTURA_ENEMIGO);
   
   }
   
@@ -26,9 +26,10 @@ class Enemigo extends GameObject{  //De esta manera ahora enemigo tiene un atrib
   direccion=0 movimiento vertical, direccion=1 movimiento horizontal
   */
   
-  public void mover(int direccion){
+  public void mover(int direccion, Habitacion habitacion){
     switch(direccion){
       case 0: {
+        cambiarSentidoVelocidad(direccion, habitacion);   //Veremos si necesitamos hacer el cambio de sentido antes
         this.posicion.y+=this.velocidad.y; //Verticalmente eje y
         break;
       }
@@ -39,6 +40,25 @@ class Enemigo extends GameObject{  //De esta manera ahora enemigo tiene un atrib
       }
   
     }
+  }
+  
+  private void cambiarSentidoVelocidad(int direccion, Habitacion habitacion){    //Esto es una dependencia. El enemigo está teniendo una relación de dependencia con la habitación
+    switch(direccion){
+      case 0:{
+        if (this.posicion.y - GestorConstantes.ALTURA_ENEMIGO/2 < habitacion.getPosicion().y){  //Si la posicion de mi enemigo es menor que la posicion de la habitacion en y
+          this.velocidad.y*=(-1);   //cambiamos el sentido en y de la velocidad
+          break;
+        }
+        
+        if (this.posicion.y+ GestorConstantes.ALTURA_ENEMIGO/2>habitacion.getPosicion().y+habitacion.getAlto()){
+          this.velocidad.y*=(-1);   //cambiamos el sentido en y de la velocidad
+          break;
+                    
+        }
+      }
+    }
+    
+  
   }
   
   
