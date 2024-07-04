@@ -2,6 +2,7 @@
 
 class Enemigo extends GameObject{  //De esta manera ahora enemigo tiene un atributo que es la posicion
   private PVector velocidad;
+  private int diametro;
   
   public Enemigo(){
   }
@@ -14,10 +15,15 @@ class Enemigo extends GameObject{  //De esta manera ahora enemigo tiene un atrib
     super(posicion); 
     this.velocidad=velocidad;
   }
+  public Enemigo(PVector posicion, PVector velocidad, int diametro){
+    super(posicion); 
+    this.velocidad=velocidad;
+    this.diametro=diametro;
+  }
   public void display(){
     fill(#2256ED);
     strokeWeight(5);
-    circle(this.posicion.x, this.posicion.y, GestorConstantes.ALTURA_ENEMIGO);
+    circle(this.posicion.x, this.posicion.y, this.diametro);
   
   }
   
@@ -45,12 +51,12 @@ class Enemigo extends GameObject{  //De esta manera ahora enemigo tiene un atrib
   private void cambiarSentidoVelocidad(int direccion, Habitacion habitacion){    //Esto es una dependencia. El enemigo está teniendo una relación de dependencia con la habitación
     switch(direccion){
       case 0:{
-        if (this.posicion.y - GestorConstantes.ALTURA_ENEMIGO/2 < habitacion.getPosicion().y){  //Si la posicion de mi enemigo es menor que la posicion de la habitacion en y
+        if (this.posicion.y - this.diametro/2 < habitacion.getPosicion().y){  //Si la posicion de mi enemigo es menor que la posicion de la habitacion en y
           this.velocidad.y*=(-1);   //cambiamos el sentido en y de la velocidad
           break;
         }
         
-        if (this.posicion.y+ GestorConstantes.ALTURA_ENEMIGO/2>habitacion.getPosicion().y+habitacion.getAlto()){
+        if (this.posicion.y+ this.diametro/2>habitacion.getPosicion().y+habitacion.getAlto()){
           this.velocidad.y*=(-1);   //cambiamos el sentido en y de la velocidad
           break;
                     

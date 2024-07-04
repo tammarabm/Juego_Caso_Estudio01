@@ -1,4 +1,4 @@
 class GestorConstantes{
-  public static final int ALTURA_ENEMIGO =40;
+  public static final int CANT_CERAMICOS_PISO=8;
 
 }

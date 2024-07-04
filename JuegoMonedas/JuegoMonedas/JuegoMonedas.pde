@@ -3,8 +3,8 @@ private JoyPad joyPad;
 //private Moneda moneda;
 private Habitacion habitacion; 
 private SpawnerMonedas spawnerMonedas;
-private Enemigo enemigo;
-
+//private Enemigo enemigo;
+private SpawnerEnemigos spawnerEnemigos;
 
 public void setup(){
   size (600,600);
@@ -15,7 +15,9 @@ public void setup(){
   personaje.setPosicion(new PVector(100,200));                  //Asigno la posicion
   personaje.setVelocidad(new PVector(5,5));
   joyPad = new JoyPad();
-  enemigo= new Enemigo (new PVector(width/2, height/2), new PVector(2,2));   //Asigno posición al enemigo y velocidad
+  //enemigo= new Enemigo (new PVector(width/2, height/2), new PVector(2,2));   //Asigno posición al enemigo y velocidad
+  spawnerEnemigos= new SpawnerEnemigos(4);
+  spawnerEnemigos.generarEnemigos(habitacion);
   //GameObject go = new GameObject();   Sale error porque NO se puede instanciar una clase abstracta 
   //moneda=new Moneda(new PVector(100,100));  //Posicion de la moneda
 }
@@ -24,6 +26,7 @@ public void draw(){
   background(#5A5858);
   habitacion.dibujarPiso();
   spawnerMonedas.visualizarMonedas();
+  spawnerEnemigos.visualizarEnemigos();
   personaje.display();
   //moneda.display();
   //¿Que sucede cuando tenemos un valor en el joypad?
@@ -42,8 +45,7 @@ public void draw(){
   if(joyPad.isLeftPressed()){
     personaje.mover(3);
   }
-  enemigo.display();
-  enemigo.mover(0, habitacion);
+  
 }
 
 public void keyPressed(){

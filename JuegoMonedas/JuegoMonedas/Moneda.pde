@@ -5,7 +5,7 @@ class Moneda extends GameObject{
   }
   
   public Moneda(PVector posicion){  //Constructor parametrizado porque quiero establecer al momento de crear una moneda quiero establecer su posicion
-    super(posicion);
+    super(posicion);  //invoco el constructor de la superclase(GameObject)
   }
   //Creo otro constructor en el cual le vamos a pasar ambos datos: posicion y diametro
   
