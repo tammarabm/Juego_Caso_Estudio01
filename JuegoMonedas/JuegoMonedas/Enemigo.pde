@@ -63,9 +63,12 @@ class Enemigo extends GameObject{  //De esta manera ahora enemigo tiene un atrib
         }
       }
     }
-    
-  
   }
+  
+  public PVector getPosicion(){
+    return this.posicion;
+  }
+  
   
   
   
