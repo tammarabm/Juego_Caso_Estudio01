@@ -19,7 +19,8 @@ class SpawnerEnemigosVerticales extends SpawnerEnemigos{
     
     for (int i=1;i<enemigos.length-1;i++){
     enemigos[i] = new Enemigo(new PVector(enemigos[i-1].getPosicion().x+distanciaEntreEnemigosConsecutivos, habitacion.getPosicion().y+diametroEnemigo/2), new PVector(5,5), diametroEnemigo);
-  }}
+   }
+  }
   
   
   public void moverEnemigos (Habitacion habitacion){
