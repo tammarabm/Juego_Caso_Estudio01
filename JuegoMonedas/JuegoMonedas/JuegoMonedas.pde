@@ -1,35 +1,27 @@
 private Personaje personaje;
 private JoyPad joyPad;
 //private Moneda moneda;
-private Habitacion habitacionPrincipal;
-private Habitacion habitacionIzquierda;
-private Habitacion habitacionDerecha;
-
+private Habitacion[]habitaciones;
 private SpawnerMonedas spawnerMonedas;
 //private Enemigo enemigo;
-private SpawnerEnemigos spawnerEnemigos;
-private SpawnerEnemigos spawnerEnemigos1;
+
+//polimorfismo mover()
+private SpawnerEnemigos[] spawnerEnemigos;
 
 public void setup(){
-  size (740,500);
-  habitacionPrincipal=new Habitacion(400, 400, GestorConstantes.HABITACION_PRINCIPAL, new PVector(134,50));
-  habitacionIzquierda=new Habitacion(134,250,GestorConstantes.HABITACION_CONTIGUA, new PVector(0,125));
-  habitacionDerecha=new Habitacion(200,200,GestorConstantes.HABITACION_CONTIGUA, new PVector(534,150));
+  size (740 ,500);
+  habitaciones= new Habitacion[3];
+  habitaciones[0]=new HabitacionPrincipal(400, 400, new PVector(134,50));
+  habitaciones[1]=new HabitacionContigua(134,250, new PVector(0,125));
+  habitaciones[2]=new HabitacionContigua(200,200, new PVector(534,150));
   spawnerMonedas= new SpawnerMonedas();
-  spawnerMonedas= new SpawnerMonedas();
-  spawnerMonedas.generarMonedas(habitacionPrincipal);
+  spawnerMonedas.generarMonedas(habitaciones[0]);
   personaje= new Personaje(); //Creo un objeto de este tipo
   personaje.setPosicion(new PVector(100,200));                  //Asigno la posicion
   personaje.setVelocidad(new PVector(5,5));
   joyPad = new JoyPad();
+  generarEnemigos();
   //enemigo= new Enemigo (new PVector(width/2, height/2), new PVector(2,2));   //Asigno posición al enemigo y velocidad
-  //Le mando 5 enemigos verticales//
-  spawnerEnemigos= new SpawnerEnemigosVerticales(4);
-  spawnerEnemigos.generarEnemigos(habitacionPrincipal);
-  
-  //Le mando 3 enemigos horizontales//
-  spawnerEnemigos1= new SpawnerEnemigosHorizontales(4);
-  spawnerEnemigos1.generarEnemigos(habitacionPrincipal);
   //GameObject go = new GameObject();   Sale error porque NO se puede instanciar una clase abstracta 
   //Clase abstracta(concepto dentro de la herencia): que no se puede instanciar
   
@@ -40,15 +32,10 @@ public void setup(){
 
 public void draw(){
   background(#5A5858);
-  habitacionPrincipal.dibujarPiso();
-  habitacionIzquierda.dibujarPiso();
-  habitacionDerecha.dibujarPiso ();
+  dibujarHabitaciones();
   spawnerMonedas.visualizarMonedas();
-  spawnerEnemigos.visualizarEnemigos();
-  spawnerEnemigos.moverEnemigos(habitacionPrincipal);
-  
-  spawnerEnemigos1.visualizarEnemigos();
-  spawnerEnemigos1.moverEnemigos(habitacionPrincipal);
+  visualizarEnemigos();
+  moverEnemigos();//p
   personaje.display();
   //moneda.display();
   //¿Que sucede cuando tenemos un valor en el joypad?
@@ -68,6 +55,36 @@ public void draw(){
     personaje.mover(3);
   }
   
+}
+
+public void dibujarHabitaciones(){
+  for (Habitacion h: habitaciones){
+    h.dibujarPiso(); //polimorfismo
+  }
+}
+public void visualizarEnemigos(){
+  for (SpawnerEnemigos spe: spawnerEnemigos){
+    spe.visualizarEnemigos();
+  }
+}
+public void moverEnemigos(){
+  for (SpawnerEnemigos spe: spawnerEnemigos){
+    spe.moverEnemigos(habitaciones[0]);
+  }
+}
+
+public void generarEnemigos(){
+  spawnerEnemigos= new SpawnerEnemigos[2];
+
+  //Le mando 5 enemigos verticales//
+  spawnerEnemigos[0]= new SpawnerEnemigosVerticales(4);
+  
+  //Le mando 3 enemigos horizontales//
+  spawnerEnemigos[1]= new SpawnerEnemigosHorizontales(4);
+
+  for (SpawnerEnemigos spe: spawnerEnemigos){
+    spe.generarEnemigos(habitaciones[0]);//p
+  }
 }
 
 public void keyPressed(){
