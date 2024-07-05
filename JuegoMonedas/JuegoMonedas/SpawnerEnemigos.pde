@@ -24,4 +24,12 @@ class SpawnerEnemigos{
       }
     }
   }
+  
+  public void moverEnemigos (int direccion,Habitacion habitacion){
+    for (Enemigo e: enemigos){
+      if (e!=null){
+        e.mover(direccion, habitacion);
+      }
+    }
+  }
 }

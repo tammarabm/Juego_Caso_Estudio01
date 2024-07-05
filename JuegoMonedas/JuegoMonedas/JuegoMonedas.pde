@@ -27,6 +27,7 @@ public void draw(){
   habitacion.dibujarPiso();
   spawnerMonedas.visualizarMonedas();
   spawnerEnemigos.visualizarEnemigos();
+  spawnerEnemigos.moverEnemigos(0, habitacion);
   personaje.display();
   //moneda.display();
   //¿Que sucede cuando tenemos un valor en el joypad?
