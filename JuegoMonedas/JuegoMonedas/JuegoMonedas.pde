@@ -1,29 +1,35 @@
 private Personaje personaje;
 private JoyPad joyPad;
 //private Moneda moneda;
-private Habitacion habitacion; 
+private Habitacion habitacionPrincipal;
+private Habitacion habitacionIzquierda;
+private Habitacion habitacionDerecha;
+
 private SpawnerMonedas spawnerMonedas;
 //private Enemigo enemigo;
 private SpawnerEnemigos spawnerEnemigos;
 private SpawnerEnemigos spawnerEnemigos1;
 
 public void setup(){
-  size (600,600);
-  habitacion=new Habitacion(400, 400, 0, new PVector(100,100));
+  size (740,500);
+  habitacionPrincipal=new Habitacion(400, 400, GestorConstantes.HABITACION_PRINCIPAL, new PVector(134,50));
+  habitacionIzquierda=new Habitacion(134,250,GestorConstantes.HABITACION_CONTIGUA, new PVector(0,125));
+  habitacionDerecha=new Habitacion(200,200,GestorConstantes.HABITACION_CONTIGUA, new PVector(534,150));
   spawnerMonedas= new SpawnerMonedas();
-  spawnerMonedas.generarMonedas(habitacion);
+  spawnerMonedas= new SpawnerMonedas();
+  spawnerMonedas.generarMonedas(habitacionPrincipal);
   personaje= new Personaje(); //Creo un objeto de este tipo
   personaje.setPosicion(new PVector(100,200));                  //Asigno la posicion
   personaje.setVelocidad(new PVector(5,5));
   joyPad = new JoyPad();
   //enemigo= new Enemigo (new PVector(width/2, height/2), new PVector(2,2));   //Asigno posición al enemigo y velocidad
   //Le mando 5 enemigos verticales//
-  spawnerEnemigos= new SpawnerEnemigosVerticales(5);
-  spawnerEnemigos.generarEnemigos(habitacion);
+  spawnerEnemigos= new SpawnerEnemigosVerticales(4);
+  spawnerEnemigos.generarEnemigos(habitacionPrincipal);
   
   //Le mando 3 enemigos horizontales//
-  spawnerEnemigos1= new SpawnerEnemigosHorizontales(3);
-  spawnerEnemigos1.generarEnemigos(habitacion);
+  spawnerEnemigos1= new SpawnerEnemigosHorizontales(4);
+  spawnerEnemigos1.generarEnemigos(habitacionPrincipal);
   //GameObject go = new GameObject();   Sale error porque NO se puede instanciar una clase abstracta 
   //Clase abstracta(concepto dentro de la herencia): que no se puede instanciar
   
@@ -34,13 +40,15 @@ public void setup(){
 
 public void draw(){
   background(#5A5858);
-  habitacion.dibujarPiso();
+  habitacionPrincipal.dibujarPiso();
+  habitacionIzquierda.dibujarPiso();
+  habitacionDerecha.dibujarPiso ();
   spawnerMonedas.visualizarMonedas();
   spawnerEnemigos.visualizarEnemigos();
-  spawnerEnemigos.moverEnemigos(habitacion);
+  spawnerEnemigos.moverEnemigos(habitacionPrincipal);
   
   spawnerEnemigos1.visualizarEnemigos();
-  spawnerEnemigos1.moverEnemigos(habitacion);
+  spawnerEnemigos1.moverEnemigos(habitacionPrincipal);
   personaje.display();
   //moneda.display();
   //¿Que sucede cuando tenemos un valor en el joypad?
