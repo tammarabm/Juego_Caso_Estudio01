@@ -5,6 +5,7 @@ private Habitacion habitacion;
 private SpawnerMonedas spawnerMonedas;
 //private Enemigo enemigo;
 private SpawnerEnemigos spawnerEnemigos;
+private SpawnerEnemigos spawnerEnemigos1;
 
 public void setup(){
   size (600,600);
@@ -15,18 +16,19 @@ public void setup(){
   personaje.setPosicion(new PVector(100,200));                  //Asigno la posicion
   personaje.setVelocidad(new PVector(5,5));
   joyPad = new JoyPad();
-<<<<<<< Updated upstream
   //enemigo= new Enemigo (new PVector(width/2, height/2), new PVector(2,2));   //Asigno posición al enemigo y velocidad
-  spawnerEnemigos= new SpawnerEnemigos(4);
+  //Le mando 5 enemigos verticales//
+  spawnerEnemigos= new SpawnerEnemigosVerticales(5);
   spawnerEnemigos.generarEnemigos(habitacion);
+  
+  //Le mando 3 enemigos horizontales//
+  spawnerEnemigos1= new SpawnerEnemigosHorizontales(3);
+  spawnerEnemigos1.generarEnemigos(habitacion);
   //GameObject go = new GameObject();   Sale error porque NO se puede instanciar una clase abstracta 
-=======
   //Clase abstracta(concepto dentro de la herencia): que no se puede instanciar
   
   //GameObject go= new GameObject();   da un error porque no se puede instanciar
   
-  
->>>>>>> Stashed changes
   //moneda=new Moneda(new PVector(100,100));  //Posicion de la moneda
 }
 
@@ -35,7 +37,10 @@ public void draw(){
   habitacion.dibujarPiso();
   spawnerMonedas.visualizarMonedas();
   spawnerEnemigos.visualizarEnemigos();
-  spawnerEnemigos.moverEnemigos(0, habitacion);
+  spawnerEnemigos.moverEnemigos(habitacion);
+  
+  spawnerEnemigos1.visualizarEnemigos();
+  spawnerEnemigos1.moverEnemigos(habitacion);
   personaje.display();
   //moneda.display();
   //¿Que sucede cuando tenemos un valor en el joypad?

@@ -41,6 +41,7 @@ class Enemigo extends GameObject{  //De esta manera ahora enemigo tiene un atrib
       }
       
       case 1:{
+        cambiarSentidoVelocidad(direccion, habitacion);
         this.posicion.x+= this.velocidad.x; //Horizontalmente eje x
         break;
       }
@@ -58,6 +59,18 @@ class Enemigo extends GameObject{  //De esta manera ahora enemigo tiene un atrib
         
         if (this.posicion.y+ this.diametro/2>habitacion.getPosicion().y+habitacion.getAlto()){
           this.velocidad.y*=(-1);   //cambiamos el sentido en y de la velocidad
+          break;
+                    
+        }
+      }
+      case 1: {
+        if (this.posicion.x - this.diametro/2 < habitacion.getPosicion().x){  //Si la posicion de mi enemigo es menor que la posicion de la habitacion en y
+            this.velocidad.x*=(-1);   //cambiamos el sentido en y de la velocidad
+            break;
+        }
+        
+        if (this.posicion.x+ this.diametro/2>habitacion.getPosicion().x+habitacion.getAncho()){
+          this.velocidad.x*=(-1);   //cambiamos el sentido en y de la velocidad
           break;
                     
         }
